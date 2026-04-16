@@ -58,9 +58,13 @@ class VectorCalculated:
         return resultForceModule
     
     def moduleBalancingForce( self ) -> float:
-        resultBalancingForce = math.atan( (self.balancingForceY/ self.balancingForceX) )
-        
-        return resultBalancingForce
+        angle = math.atan2(self.balancingForceY, self.balancingForceX)
+        angle_deg = math.degrees(angle)
+
+        if angle_deg < 0:
+            angle_deg += 360
+
+        return angle_deg
     
     def decompositionForce(self, force: float, theta: float) -> object:
         forceX = math.cos(theta) * force
