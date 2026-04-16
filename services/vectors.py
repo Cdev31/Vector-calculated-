@@ -37,7 +37,7 @@ class VectorCalculated:
             'resultForceY': self.resultForceY
         }
     
-    def resultNegativeForce(self) -> object:
+    def balancingForce(self) -> object:
         self.balancingForceX = -self.resultForceX
         self.balancingForceY = -self.resultForceY
 
@@ -54,11 +54,23 @@ class VectorCalculated:
     
     def moduleResultForce(self) -> float:
         resultForceModule = math.atan( (self.resultForceY/ self.resultForceX ) )
+        
         return resultForceModule
     
     def moduleBalancingForce( self ) -> float:
         resultBalancingForce = math.atan( (self.balancingForceY/ self.balancingForceX) )
+        
         return resultBalancingForce
+    
+    def decompositionForce(self, force: float, theta: float) -> object:
+        forceX = math.cos(theta) * force
+        forceY = math.sin(theta) * force
+
+        return {
+            'forceX': forceX,
+            'forceY': forceY
+        }
+        
     
 
     
